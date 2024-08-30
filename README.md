@@ -9,17 +9,14 @@ clip 멀티모달을 활용한 이미지 검색
   - ex) 모델은 고양이와 개 이미지만 학습했더라도, 학습 과정에서 본 적이 없는 "새" 이미지에 대해서도 적절한 예측이 가능.
     이는 모델이 고양이, 개, 새와 같은 클래스에 대한 개념을 학습하고, 이를 일반화하여 새로운 클래스를 처리할 수 있기 때문
 
-## ElasticSearch docker container 실행
+### docker compose 실행
 
 ```sh
 # docker network create
-$ docker network create clip_elasticsearch
+$ docker network create clip_multimodal
 
-# image build
-$ docker build -t clip_elasticsearch ./elasticsearch/
-
-# container run
-$ docker run -d --name clip_elasticsearch --net clip_elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" clip_elasticsearch
+# docker compose
+$ docker compose up -d --build
 ```
 
 ## ngrok proxy 서버 연결
@@ -41,6 +38,9 @@ $ ngrok http http://localhost:9200
 [notebook 파일](https://github.com/hyeonDD/clip-elasticsearch/blob/main/clip_elasticsearch.ipynb)
 
 ### 결과
+
+각 110장 사진의 임베딩된 벡터들
+![kibana discover](readme_images/kibana_discover.png)
 
 ![meat](readme_images/meat.png)
 

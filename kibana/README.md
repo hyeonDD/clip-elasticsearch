@@ -1,7 +1,5 @@
 # command
 
-docker network create
-
 image build
 
 ```sh
